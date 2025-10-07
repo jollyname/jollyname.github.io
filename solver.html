@@ -7,19 +7,7 @@
 <body>
 <input id="question" type="text" placeholder="Enter question" style="width:300px">
 <button onclick="solve()">Solve</button>
-<span id="answer" style="font-size:1.5em;"></span>
-
-<script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Mini Math Solver</title>
-</head>
-<body>
-<input id="question" type="text" placeholder="Enter question" style="width:300px">
-<button onclick="solve()">Solve</button>
-<span id="answer" style="font-size:1.5em;"></span>
+<span id="answer" style="font-size:1.5em; margin-left:10px;"></span>
 
 <script>
 function solve() {
@@ -34,7 +22,12 @@ function solve() {
     // Replace division symbols with '/'
     q = q.replace(/[÷:]/g, '/');
 
-    // Compute the answer
+    // Replace multiplication symbols with '*'
+    q = q.replace(/[x×]/gi, '*');
+
+    // Remove any characters that aren't digits, operators, parentheses, or dot
+    q = q.replace(/[^0-9+\-*/().\s]/g, '');
+
     let result;
 
     // Handle vertical fraction like "-6 -2"
@@ -42,9 +35,10 @@ function solve() {
         let [top, bottom] = q.split(/\s+/);
         result = Number(top) / Number(bottom);
     } else {
-        // Otherwise, evaluate inline arithmetic
+        // Otherwise, evaluate inline arithmetic safely
         try {
-            result = eval(q);
+            // Function constructor is safer than eval in this controlled scenario
+            result = Function('"use strict"; return (' + q + ')')();
         } catch {
             result = "ERR";
         }
