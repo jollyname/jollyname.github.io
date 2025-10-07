@@ -22,19 +22,29 @@ function solve() {
     // Replace division symbols with '/'
     q = q.replace(/[÷:]/g, '/');
 
+    // Compute the answer
+    let result;
+
     // Handle vertical fraction like "-6 -2"
     if (/^-?\d+(\.\d+)?\s-?\d+(\.\d+)?$/.test(q)) {
         let [top, bottom] = q.split(/\s+/);
-        document.getElementById('answer').innerText = Number(top) / Number(bottom);
-        return;
+        result = Number(top) / Number(bottom);
+    } else {
+        // Otherwise, evaluate inline arithmetic
+        try {
+            result = eval(q);
+        } catch {
+            result = "ERR";
+        }
     }
 
-    // Otherwise, evaluate inline arithmetic
-    try {
-        document.getElementById('answer').innerText = eval(q);
-    } catch {
-        document.getElementById('answer').innerText = "ERR";
-    }
+    // Display the answer
+    document.getElementById('answer').innerText = result;
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(result.toString()).catch(err => {
+        console.error('Could not copy:', err);
+    });
 }
 </script>
 </body>
