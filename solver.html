@@ -8,17 +8,20 @@
 <h2>Mini Math Solver</h2>
 <input id="question" type="text" placeholder="Enter question" style="width:300px">
 <button onclick="solve()">Solve</button>
-<p>Answer: <span id="answer"></span></p>
+<p><span id="answer" style="font-size:1.5em;"></span></p>
 
 <script>
 function solve() {
     let q = document.getElementById('question').value.trim();
 
-    // Normalize symbols and line breaks
-    q = q.replace(/\n+/g, ' ')
-         .replace(/[÷:]/g, '/')
-         .replace(/[=?]/g, '')
-         .trim();
+    // Remove trailing '=' or '?'
+    q = q.replace(/[=?]/g, '').trim();
+
+    // Normalize newlines and spaces
+    q = q.replace(/\n+/g, ' ').trim();
+
+    // Replace division symbols with '/'
+    q = q.replace(/[÷:]/g, '/');
 
     // Handle vertical fraction like "-6 -2"
     if (/^-?\d+(\.\d+)?\s-?\d+(\.\d+)?$/.test(q)) {
@@ -27,7 +30,7 @@ function solve() {
         return;
     }
 
-    // Otherwise evaluate inline arithmetic
+    // Otherwise, evaluate inline arithmetic
     try {
         document.getElementById('answer').innerText = eval(q);
     } catch {
