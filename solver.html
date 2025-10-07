@@ -10,18 +10,6 @@
 <span id="answer" style="font-size:1.5em;"></span>
 
 <script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Mini Math Solver</title>
-</head>
-<body>
-<input id="question" type="text" placeholder="Enter question" style="width:300px">
-<button onclick="solve()">Solve</button>
-<span id="answer" style="font-size:1.5em;"></span>
-
-<script>
 function solve() {
     let q = document.getElementById('question').value.trim();
 
@@ -34,7 +22,6 @@ function solve() {
     // Replace division symbols with '/'
     q = q.replace(/[÷:]/g, '/');
 
-    // Compute the answer
     let result;
 
     // Handle vertical fraction like "-6 -2"
