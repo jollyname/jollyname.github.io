@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini Math Solver</title>
+</head>
+<body>
+<h2>Mini Math Solver</h2>
+<input id="question" type="text" placeholder="Enter question" style="width:300px">
+<button onclick="solve()">Solve</button>
+<p>Answer: <span id="answer"></span></p>
+
+<script>
+function solve() {
+    let q = document.getElementById('question').value.trim();
+
+    // Normalize symbols and line breaks
+    q = q.replace(/\n+/g, ' ')
+         .replace(/[÷:]/g, '/')
+         .replace(/[=?]/g, '')
+         .trim();
+
+    // Handle vertical fraction like "-6 -2"
+    if (/^-?\d+(\.\d+)?\s-?\d+(\.\d+)?$/.test(q)) {
+        let [top, bottom] = q.split(/\s+/);
+        document.getElementById('answer').innerText = Number(top) / Number(bottom);
+        return;
+    }
+
+    // Otherwise evaluate inline arithmetic
+    try {
+        document.getElementById('answer').innerText = eval(q);
+    } catch {
+        document.getElementById('answer').innerText = "ERR";
+    }
+}
+</script>
+</body>
+</html>
