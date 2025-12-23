@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Jollyname's stuff</title>
+    <title>Jollyname's Stuff</title>
     <style>
         body {
             background: #111;
@@ -11,6 +11,7 @@
             padding: 2em;
             max-width: 700px;
             margin: auto;
+            line-height: 1.5;
         }
 
         h1 {
@@ -26,25 +27,31 @@
         }
 
         .project {
-            margin-bottom: 2em;
-            border-bottom: 1px solid #222;
-            padding-bottom: 1em;
+            margin-bottom: 2.5em;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1.5em;
         }
 
-            .project h2 {
-                margin-bottom: 0.3em;
-                color: #0af;
-            }
+        .project h2 {
+            margin-bottom: 0.3em;
+            color: #0af;
+        }
+
+        .project p {
+            margin-top: 0.5em;
+            color: #ccc;
+        }
 
         a {
             color: #0af;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
         }
 
-            a:hover {
-                text-decoration: underline;
-            }
+        a:hover {
+            text-decoration: underline;
+        }
 
         img {
             max-width: 100%;
@@ -52,26 +59,44 @@
             margin-top: 0.5em;
             border-radius: 4px;
         }
+
+        /* Responsive tweaks */
+        @media (max-width: 500px) {
+            body {
+                padding: 1em;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Jollyname's stuff</h1>
+    <h1>Jollyname's Stuff</h1>
     <p class="intro">A collection of interactive experiments by me.</p>
 
     <div class="project">
-        <h2> C++ Planet Editor</h2>
-        <a href="downloads/planet_editor.zip" download> Download</a>
-        <img src="images/planet_editor.gif" alt="Planet Editor Demo"/>
+        <h2>C++ Planet Editor</h2>
+        <a href="downloads/planet_editor.zip" download>Download</a>
+        <img src="images/planet_editor.gif" alt="Demo of Planet Editor showing terrain editing" />
+        <p>
+            A simple C++ application to create and modify planets. Experiment with terrain shapes, textures, and colors.
+        </p>
     </div>
 
     <div class="project">
-        <h2> C++ Bullet Physics</h2>
-        <a href="downloads/TemplarGame.zip" download> Download</a>
-        <img src="images/car_test.gif" alt="C++ Bullet Physic Demo"/>
-<p>
-    A C++ game with Bullet Physics: walk in third-person, enter and drive a car, explore a procedurally generated terrain, all starting from a simple main menu.
-</p>
-
+        <h2>C++ Bullet Physics</h2>
+        <a href="downloads/TemplarGame.zip" download>Download</a>
+        <img src="images/car_test.gif" alt="Demo of C++ Bullet Physics game with car driving" />
+        <p>
+            A C++ game using Bullet Physics. Walk in third-person, enter and drive a car, and explore procedurally generated terrain, all from a simple main menu.
+        </p>
+        <p>
+            <strong>Controls:</strong><br>
+            Move: WASD<br>
+            Jump: Space<br>
+            Enter/Exit car: E<br>
+            Toggle Cursor: F<br>
+            Reset Car: R (only works when driving)
+        </p>
     </div>
 </body>
 </html>
